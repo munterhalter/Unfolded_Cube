@@ -44,26 +44,6 @@
         ></a-entity>
       </a-entity>
 
-      <!--
-        ## Entities
-        An A-Frame scene consists of entities.
-        Entities are custom html tags of type `<a-entity>`.
-        Do not forget the closing tag `</a-entity>`.
-        
-        Entities by themselves do not contain or display anything.
-        To make an entity do something you need to assign components to them.
-        
-        Component are specified in the opening <a-entity> tag
-          Example (below):
-          - `geometry` is an A-Frame component; it tells us that the entity has a geometry (a shape)
-          - `material` is an A-Frame component; it tells us that the entity has a material (color/texture)
-          - `position` is an A-Frame component; it tells us that the entity has a place in space (coordinates)
-          - `rotation` is an A-Frame component; it tells us that the entity is rotated in space somehow (expressed using Euler angles)
-          - `id` is **not** an A-Frame component; it is an HTML attribute; it specifies a unique identifier for the element
-
-        Components/attributes come usually in name/value pairs.
-        -->
-
       <!-- This is the FRONT floor (LIGHT GREEN)-->
       <a-entity
         id="floorFront"
@@ -144,13 +124,6 @@
         position="40 0 0"
       ></a-entity>
       <!-- We add a sky (making it a more pleasant color than white) -->
-      <!-- A-Frame has some pre-configured entities, called primitives, that can be invoked with a special tag. For example <a-sky> below. 
-    Primitives are just convenience tags for preconfigured entities.
-
-    For more information about primitives, see https://aframe.io/docs/1.4.0/introduction/html-and-primitives.html .
-    For a complete list of premitives, see the `primitives` section in https://aframe.io/docs .
-    -->
-      <!-- id and geometry are the same, one is the name and one is actually coding it  -->
 
       <a-sky id="sky" color="#1A0A2A"></a-sky>
     </a-scene>
