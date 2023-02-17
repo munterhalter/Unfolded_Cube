@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+  <!-- Above is a declaration that this is an HTML file in english-->
+  <!-- Next is the "header" of the HTML file. It specifies some 
+    important information and preliminaries. The hearder is enclosed in the 
+  `<head>``</head>` tag -->
+
+  <head>
+    <!-- Some standards-compliant boilerplate. Just ignore this -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <!-- Next, we pull in the A-Frame library -->
+    <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
+    <!-- Next, we have the title of our page-->
+    <title>A Basic A-Frame scene</title>
+  </head>
+  <!-- 
+  This is a comment. Nothing here gets parsed by the browser.
+  -->
+
+  <!-- Next, we start with the body of our document, enclosed in the `<body>` `</body>` tags.
+  -->
+
+  <body>
+    <!-- 
+    Any A-Frame scene must be contained inside an `<a-scene>` tag. 
+    -->
+    <a-scene>
+      <!-- ## The scene
+        Next, we initialize the camera 
+
+        The code below specifies a camera that can be controlled with a keyboard
+        and by looking around with a mouse. The camera is positioned inside a "rig".
+        
+        Let us not worry about the camera for now. A-Frame takes care of most of the setup for us.
+      -->
+      <a-entity id="rig" wasd-controls position="0 0 0">
+        <a-entity
+          id="camera"
+          camera="fov:55"
+          position="0 1.6 0"
+          look-controls
+        ></a-entity>
+      </a-entity>
+
+      <!--
+        ## Entities
+        An A-Frame scene consists of entities.
+        Entities are custom html tags of type `<a-entity>`.
+        Do not forget the closing tag `</a-entity>`.
+        
+        Entities by themselves do not contain or display anything.
+        To make an entity do something you need to assign components to them.
+        
+        Component are specified in the opening <a-entity> tag
+          Example (below):
+          - `geometry` is an A-Frame component; it tells us that the entity has a geometry (a shape)
+          - `material` is an A-Frame component; it tells us that the entity has a material (color/texture)
+          - `position` is an A-Frame component; it tells us that the entity has a place in space (coordinates)
+          - `rotation` is an A-Frame component; it tells us that the entity is rotated in space somehow (expressed using Euler angles)
+          - `id` is **not** an A-Frame component; it is an HTML attribute; it specifies a unique identifier for the element
+
+        Components/attributes come usually in name/value pairs.
+        -->
+
+      <!-- This is the FRONT floor (LIGHT GREEN)-->
+      <a-entity
+        id="floorFront"
+        geometry="primitive: plane; width: 20; height: 20"
+        material="color: #7BC8A4; side: double"
+        height="100"
+        width="100"
+        rotation="-90 00 00"
+      ></a-entity>
+      <!-- This is the TOP floor (ROYAL BLUE)-->
+      <a-entity
+        id="floorTop"
+        geometry="primitive: plane; width: 20; height: 20"
+        material="color: blue; side: double"
+        height="100"
+        width="100"
+        rotation="-90 00 00"
+        position="0 0 -20"
+      ></a-entity>
+      <!-- This is the Bottom floor (ORANGE)-->
+      <a-entity
+        id="floorBottom"
+        geometry="primitive: plane; width: 20; height: 20"
+        material="color: orange; side: double"
+        height="100"
+        width="100"
+        rotation="-90 00 00"
+        position="0 0 20"
+      ></a-entity>
+      <!-- This is the LEFT floor (PINK)-->
+      <a-entity
+        id="floorLeft"
+        geometry="primitive: plane; width: 20; height: 20"
+        material="color: pink; side: double"
+        height="100"
+        width="100"
+        rotation="-90 00 00"
+        position="-20 0 0"
+      ></a-entity>
+      <!-- This is the LEFT floor (PINK)-->
+      <a-entity
+        id="floorLeft"
+        geometry="primitive: plane; width: 20; height: 20"
+        material="color: pink; side: double"
+        height="100"
+        width="100"
+        rotation="-90 00 00"
+        position="-20 0 0"
+      ></a-entity>
+      <!-- This is the LEFT floor (PINK)-->
+      <a-entity
+        id="floorRIGHT"
+        geometry="primitive: plane; width: 20; height: 20"
+        material="color: pink; side: double"
+        height="100"
+        width="100"
+        rotation="-90 00 00"
+        position="20 0 0"
+      ></a-entity>
+      <!-- This is the RIGHT floor (GRAY)-->
+      <a-entity
+        id="floorRIGHT"
+        geometry="primitive: plane; width: 20; height: 20"
+        material="color: gray; side: double"
+        height="100"
+        width="100"
+        rotation="-90 00 00"
+        position="20 0 0"
+      ></a-entity>
+      <!-- This is the RIGHT floor (YELLOW)-->
+      <a-entity
+        id="floorBACK"
+        geometry="primitive: plane; width: 20; height: 20"
+        material="color: yellow; side: double"
+        height="100"
+        width="100"
+        rotation="-90 00 00"
+        position="40 0 0"
+      ></a-entity>
+      <!-- We add a sky (making it a more pleasant color than white) -->
+      <!-- A-Frame has some pre-configured entities, called primitives, that can be invoked with a special tag. For example <a-sky> below. 
+    Primitives are just convenience tags for preconfigured entities.
+
+    For more information about primitives, see https://aframe.io/docs/1.4.0/introduction/html-and-primitives.html .
+    For a complete list of premitives, see the `primitives` section in https://aframe.io/docs .
+    -->
+      <!-- id and geometry are the same, one is the name and one is actually coding it  -->
+
+      <a-sky id="sky" color="#1A0A2A"></a-sky>
+    </a-scene>
+  </body>
+</html>
