@@ -45,18 +45,19 @@
         ></a-entity>
       </a-entity>
 
-      <!-- This is the FRONT floor (LIGHT GREEN)-->
+      <!-- FRONT (light green)-->
       <a-entity
-        id="floorFront"
+        id="cube_front"
         geometry="primitive: plane; width: 20; height: 20"
         material="color: #7BC8A4; side: double"
         height="100"
         width="100"
         rotation="-90 00 00"
       ></a-entity>
-      <!-- This is the TOP floor (ROYAL BLUE)-->
+      
+      <!-- TOP (blue)-->
       <a-entity
-        id="floorTop"
+        id="cube_top"
         geometry="primitive: plane; width: 20; height: 20"
         material="color: blue; side: double"
         height="100"
@@ -64,9 +65,10 @@
         rotation="-90 00 00"
         position="0 0 -20"
       ></a-entity>
-      <!-- This is the Bottom floor (ORANGE)-->
+      
+      <!-- BOTTOM (orange)-->
       <a-entity
-        id="floorBottom"
+        id="cube_bottom"
         geometry="primitive: plane; width: 20; height: 20"
         material="color: orange; side: double"
         height="100"
@@ -74,9 +76,10 @@
         rotation="-90 00 00"
         position="0 0 20"
       ></a-entity>
-      <!-- This is the LEFT floor (PINK)-->
+      
+      <!-- LEFT (pink)-->
       <a-entity
-        id="floorLeft"
+        id="cube_left"
         geometry="primitive: plane; width: 20; height: 20"
         material="color: pink; side: double"
         height="100"
@@ -84,39 +87,21 @@
         rotation="-90 00 00"
         position="-20 0 0"
       ></a-entity>
-      <!-- This is the LEFT floor (PINK)-->
+
+      <!-- RIGHT (purple) -->
       <a-entity
-        id="floorLeft"
+        id="cube_right"
         geometry="primitive: plane; width: 20; height: 20"
-        material="color: pink; side: double"
-        height="100"
-        width="100"
-        rotation="-90 00 00"
-        position="-20 0 0"
-      ></a-entity>
-      <!-- This is the LEFT floor (PINK)-->
-      <a-entity
-        id="floorRIGHT"
-        geometry="primitive: plane; width: 20; height: 20"
-        material="color: pink; side: double"
+        material="color: purple; side: double"
         height="100"
         width="100"
         rotation="-90 00 00"
         position="20 0 0"
       ></a-entity>
-      <!-- This is the RIGHT floor (GRAY)-->
+      
+      <!-- BACK (yellow) -->
       <a-entity
-        id="floorRIGHT"
-        geometry="primitive: plane; width: 20; height: 20"
-        material="color: gray; side: double"
-        height="100"
-        width="100"
-        rotation="-90 00 00"
-        position="20 0 0"
-      ></a-entity>
-      <!-- This is the RIGHT floor (YELLOW)-->
-      <a-entity
-        id="floorBACK"
+        id="cube_back"
         geometry="primitive: plane; width: 20; height: 20"
         material="color: yellow; side: double"
         height="100"
@@ -124,8 +109,8 @@
         rotation="-90 00 00"
         position="40 0 0"
       ></a-entity>
+      
       <!-- We add a sky (making it a more pleasant color than white) -->
-
       <a-sky id="sky" color="#1A0A2A"></a-sky>
     </a-scene>
   </body>
