@@ -16,14 +16,49 @@
     <!-- Next, we have the title of our page-->
     <title>A Basic A-Frame scene</title>
   </head>
-  <!-- 
-  This is a comment. Nothing here gets parsed by the browser.
-  -->
 
-  <!-- Next, we start with the body of our document, enclosed in the `<body>` `</body>` tags.
-  -->
-
+  
   <body>
+    
+          AFRAME.registerComponent("position-tracking", {
+        // A new instance of the component gets created for each <a-entity> the component is attached to
+
+        // The init function gets executed each time an instance of the component is created
+        init: function () {
+          // The given instance of the component can be accessed using the `this` variable
+          // for example: this.name refers to the string representation of the component name
+          console.log(
+            "Hello, " +
+              this.name +
+              " is being initialized on the element"
+          );
+          // this.el refers to the <a-entity> this component is attached to
+          console.log(this.el);
+          this.debug = AFRAME.utils.throttle(this.debug, 1000, this);
+        },
+        debug: function (t, dt) {
+          // This debugging functions is NOT executed automatically
+          // It gets called from the "tick" function
+          console.log("This is a debugging function");
+          // Printing x, y, z values //
+          console.log("x-position: " + this.el.object3D.position.x);
+          console.log("y-position: " + this.el.object3D.position.y);
+          console.log("z-position: " + this.el.object3D.position.z);
+        },
+        tick: function (t, dt) {
+          // This function (tick) gets called on each rendered frame
+          // t is the time in milliseconds since the start of the program
+          // dt is the time in milliseconds since the last rendered frame
+  
+          this.el.object3D.position.x;
+          this.el.object3D.position.y;
+          this.el.object3D.position.z;
+
+          // The following code is responsible for calling the debugging function
+          this.debug(t, dt);
+        }
+      });
+    
     <!-- 
     Any A-Frame scene must be contained inside an `<a-scene>` tag. 
     -->
