@@ -1,26 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
-  <!-- Above is a declaration that this is an HTML file in english-->
-  <!-- Next is the "header" of the HTML file. It specifies some 
-    important information and preliminaries. The hearder is enclosed in the 
-  `<head>``</head>` tag -->
-
   <head>
     <!-- Some standards-compliant boilerplate. Just ignore this -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <!-- Next, we pull in the A-Frame library and some extra plugins-->
+    <!-- Next, we pull in the A-Frame library and some extra plugins -->
     <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-extras@fb96ab2/dist/aframe-extras.min.js"></script>
     <!-- Next, we have the title of our page-->
     <title>A Basic A-Frame scene</title>
   </head>
 
-  
-  <body>
     <script>
-          AFRAME.registerComponent("position-tracking", {
+      /* A-Frame logic is stored in components and in systems.
+                Components are logic attached to an `<a-entity>` while systems are global and
+                are attached to a scene. Here we focus on defining a component
+                Documentation for writing components is found here:
+                https://aframe.io/docs/master/core/component.html
+                */
+      AFRAME.registerComponent("position-tracking", {
         // A new instance of the component gets created for each <a-entity> the component is attached to
 
         // The init function gets executed each time an instance of the component is created
@@ -30,48 +29,48 @@
           console.log(
             "Hello, " +
               this.name +
-              " is being initialized on the element"
+              " is being initialized on the element (MODIFICATION TEST)"
           );
           // this.el refers to the <a-entity> this component is attached to
           console.log(this.el);
+          // The following code is responsible for calling the debugging function
+          // We do not want to call the debug routine too often because it would slow our rendering to a crawl
+          // You can avoid reading into this too deeply. Just know that this is responsinble for making sure that the function
+          // debug(t,dt) does not get called more than once every 1000 ms
           this.debug = AFRAME.utils.throttle(this.debug, 1000, this);
         },
         debug: function (t, dt) {
           // This debugging functions is NOT executed automatically
           // It gets called from the "tick" function
-          console.log("This is a debugging function");
+          console.log("This is a debugging function (MODIFICATION TEST)");
           // Printing x, y, z values //
           console.log("x-position: " + this.el.object3D.position.x);
           console.log("y-position: " + this.el.object3D.position.y);
           console.log("z-position: " + this.el.object3D.position.z);
         },
         tick: function (t, dt) {
-          // This function (tick) gets called on each rendered frame
-          // t is the time in milliseconds since the start of the program
-          // dt is the time in milliseconds since the last rendered frame
-  
           this.el.object3D.position.x;
           this.el.object3D.position.y;
           this.el.object3D.position.z;
+
+          if (this.el.object3D.position.x < 10 && this.el.object3D.position.x > -10) {
+            if (this.el.object3D.position.z < 10 && this.el.object3D.position.z > -10) {
+            console.log("FRONT")
+            }
+          }  
+
 
           // The following code is responsible for calling the debugging function
           this.debug(t, dt);
         }
       });
     </script>
-    
+
     <!-- 
     Any A-Frame scene must be contained inside an `<a-scene>` tag. 
     -->
     <a-scene>
-      <!-- ## The scene
-        Next, we initialize the camera 
 
-        The code below specifies a camera that can be controlled with a keyboard
-        and by looking around with a mouse. The camera is positioned inside a "rig".
-        
-        Let us not worry about the camera for now. A-Frame takes care of most of the setup for us.
-      -->
       <a-entity id="rig" movement-controls position="0 0 0" position-tracking>
         <a-entity
           id="camera"
@@ -90,7 +89,7 @@
         width="100"
         rotation="-90 00 00"
       ></a-entity>
-      
+
       <!-- TOP (blue)-->
       <a-entity
         id="cube_top"
@@ -101,7 +100,7 @@
         rotation="-90 00 00"
         position="0 0 -20"
       ></a-entity>
-      
+
       <!-- BOTTOM (pink)-->
       <a-entity
         id="cube_bottom"
@@ -112,7 +111,7 @@
         rotation="-90 00 00"
         position="0 0 20"
       ></a-entity>
-      
+
       <!-- LEFT (yellow)-->
       <a-entity
         id="cube_left"
@@ -134,7 +133,7 @@
         rotation="-90 00 00"
         position="20 0 0"
       ></a-entity>
-      
+
       <!-- BACK (red) -->
       <a-entity
         id="cube_back"
@@ -145,7 +144,7 @@
         rotation="-90 00 00"
         position="40 0 0"
       ></a-entity>
-      
+
       <!-- We add a sky (making it a more pleasant color than white) -->
       <a-sky id="sky" color="#1A0A2A"></a-sky>
     </a-scene>
