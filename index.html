@@ -1,15 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <!-- Some standards-compliant boilerplate. Just ignore this -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <!-- Next, we pull in the A-Frame library and some extra plugins -->
     <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-extras@fb96ab2/dist/aframe-extras.min.js"></script>
-    <!-- Next, we have the title of our page-->
-    <title>A Basic A-Frame scene</title>
+    <title>Cube Faces Tracking</title>
   </head>
 
     <script>
@@ -29,15 +26,16 @@
           // this.el refers to the <a-entity> this component is attached to
           console.log(this.el);
 
-          this.debug = AFRAME.utils.throttle(this.debug, 10000, this);
+          this.debug = AFRAME.utils.throttle(this.debug, 1000, this);
         },
         debug: function (t, dt) {
           // This debugging functions is NOT executed automatically
           // It gets called from the "tick" function
-          console.log("This is a debugging function");
-          // Printing x, y, z values //
-          console.log("x-position: " + this.el.object3D.position.x);
-          console.log("z-position: " + this.el.object3D.position.z);
+          // console.log("This is a debugging function");
+          console.log("Current position: " + current_face);
+          // Printing x, y, z values
+          //console.log("x-position: " + this.el.object3D.position.x);
+          //console.log("z-position: " + this.el.object3D.position.z);
         },
         tick: function (t, dt) {
           this.el.object3D.position.x;
@@ -46,23 +44,23 @@
 
           if (this.el.object3D.position.x < 10 && this.el.object3D.position.x > -10) {
             if (this.el.object3D.position.z < 10 && this.el.object3D.position.z > -10) {
-            console.log("FRONT")
+            current_face = "FRONT"
             } else if (this.el.object3D.position.z < -10 && this.el.object3D.position.z > -30) {
-              console.log("TOP")
+              current_face = "TOP"
             } else if (this.el.object3D.position.z < 30 && this.el.object3D.position.z > 10) {
-              console.log("BOTTOM")
+              current_face = "BOTTOM"
             }
           } else if (this.el.object3D.position.x < -10 && this.el.object3D.position.x > -20) {
             if (this.el.object3D.position.z < 10 && this.el.object3D.position.z > -10) {
-            console.log("LEFT")
+              current_face = "LEFT"
             }
           } else if (this.el.object3D.position.x < 30 && this.el.object3D.position.x > 10) {
             if (this.el.object3D.position.z < 10 && this.el.object3D.position.z > -10) {
-            console.log("RIGHT")
+              current_face = "RIGHT"
             }
           } else if (this.el.object3D.position.x < 50 && this.el.object3D.position.x > 30) {
             if (this.el.object3D.position.z < 10 && this.el.object3D.position.z > -10) {
-            console.log("BACK")
+              current_face = "BACK"
             }
           }  
 
