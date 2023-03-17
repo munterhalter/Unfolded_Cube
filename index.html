@@ -13,12 +13,7 @@
   </head>
 
     <script>
-      /* A-Frame logic is stored in components and in systems.
-                Components are logic attached to an `<a-entity>` while systems are global and
-                are attached to a scene. Here we focus on defining a component
-                Documentation for writing components is found here:
-                https://aframe.io/docs/master/core/component.html
-                */
+      
       AFRAME.registerComponent("position-tracking", {
         // A new instance of the component gets created for each <a-entity> the component is attached to
 
@@ -33,11 +28,8 @@
           );
           // this.el refers to the <a-entity> this component is attached to
           console.log(this.el);
-          // The following code is responsible for calling the debugging function
-          // We do not want to call the debug routine too often because it would slow our rendering to a crawl
-          // You can avoid reading into this too deeply. Just know that this is responsinble for making sure that the function
-          // debug(t,dt) does not get called more than once every 1000 ms
-          this.debug = AFRAME.utils.throttle(this.debug, 1000, this);
+
+          this.debug = AFRAME.utils.throttle(this.debug, 10000, this);
         },
         debug: function (t, dt) {
           // This debugging functions is NOT executed automatically
@@ -45,7 +37,6 @@
           console.log("This is a debugging function (MODIFICATION TEST)");
           // Printing x, y, z values //
           console.log("x-position: " + this.el.object3D.position.x);
-          console.log("y-position: " + this.el.object3D.position.y);
           console.log("z-position: " + this.el.object3D.position.z);
         },
         tick: function (t, dt) {
@@ -57,8 +48,27 @@
             if (this.el.object3D.position.z < 10 && this.el.object3D.position.z > -10) {
             console.log("FRONT")
             }
+          } else if (this.el.object3D.position.x < 10 && this.el.object3D.position.x > -10) {
+            if (this.el.object3D.position.z < -10 && this.el.object3D.position.z > -30) {
+              console.log("TOP")
+            }
+          } else if (this.el.object3D.position.x < 10 && this.el.object3D.position.x > -10) {
+            if (this.el.object3D.position.z < 30 && this.el.object3D.position.z > 10) {
+              console.log("BOTTOM")
+            }
+          } else if (this.el.object3D.position.x < -10 && this.el.object3D.position.x > -20) {
+            if (this.el.object3D.position.z < 10 && this.el.object3D.position.z > -10) {
+            console.log("LEFT")
+            }
+          } else if (this.el.object3D.position.x < 30 && this.el.object3D.position.x > 10) {
+            if (this.el.object3D.position.z < 10 && this.el.object3D.position.z > -10) {
+            console.log("RIGHT")
+            }
+          } else if (this.el.object3D.position.x < 50 && this.el.object3D.position.x > 30) {
+            if (this.el.object3D.position.z < 10 && this.el.object3D.position.z > -10) {
+            console.log("BACK")
+            }
           }  
-
 
           // The following code is responsible for calling the debugging function
           this.debug(t, dt);
