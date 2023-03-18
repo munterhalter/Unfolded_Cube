@@ -23,76 +23,71 @@
         ></a-entity>
       </a-entity>
 
-
       <!-- The face disposition in the unfolding of the cube is given by 
-        ******  ******  ******  ******
+        *********  *********  *********  *********
 
-        ******  TOP     ******  ******
+        *********  TOP(3)     *********  *********
 
-        LEFT    FRONT   RIGHT   BACK
+        LEFT(4)    FRONT(1)   RIGHT(2)   BACK(6)
 
-        ******  BOTTOM  ******  ******
+        *********  BOTTOM(5)  *********  *********
         
-        ******  ******  ******  ******
+        *********  *********  *********  *********
       -->
 
-
-
-      
-      <!-- FRONT (green)-->
+      <!-- FRONT(1) (green)-->
       <a-entity
-        id="cube_front"
+        id="face_1"
         geometry="primitive: plane; width: 10; height: 10"
         material="color: green; side: double"
         rotation="-90 00 00"
         position="0 0 0"
       ></a-entity>
 
-      <!-- TOP (blue)-->
+      <!-- RIGHT(2) (orange) -->
       <a-entity
-        id="cube_top"
-        geometry="primitive: plane; width: 10; height: 10"
-        material="color: blue; side: double"
-        rotation="-90 00 00"
-        position="0 0 -10"
-      ></a-entity>
-
-      <!-- BOTTOM (pink)-->
-      <a-entity
-        id="cube_bottom"
-        geometry="primitive: plane; width: 10; height: 10"
-        material="color: pink; side: double"
-        rotation="-90 00 00"
-        position="0 0 10"
-      ></a-entity>
-
-      <!-- LEFT (yellow)-->
-      <a-entity
-        id="cube_left"
-        geometry="primitive: plane; width: 10; height: 10"
-        material="color: yellow; side: double"
-        rotation="-90 00 00"
-        position="-10 0 0"
-      ></a-entity>
-
-      <!-- RIGHT (orange) -->
-      <a-entity
-        id="cube_right"
+        id="face_2"
         geometry="primitive: plane; width: 10; height: 10"
         material="color: orange; side: double"
         rotation="-90 00 00"
         position="10 0 0"
       ></a-entity>
 
-      <!-- BACK (red) -->
+      <!-- TOP(3) (blue)-->
       <a-entity
-        id="cube_back"
+        id="face_3"
+        geometry="primitive: plane; width: 10; height: 10"
+        material="color: blue; side: double"
+        rotation="-90 00 00"
+        position="0 0 -10"
+      ></a-entity>
+
+      <!-- LEFT(4) (yellow)-->
+      <a-entity
+        id="face_4"
+        geometry="primitive: plane; width: 10; height: 10"
+        material="color: yellow; side: double"
+        rotation="-90 00 00"
+        position="-10 0 0"
+      ></a-entity>
+
+      <!-- BOTTOM(5) (pink)-->
+      <a-entity
+        id="face_5"
+        geometry="primitive: plane; width: 10; height: 10"
+        material="color: pink; side: double"
+        rotation="-90 00 00"
+        position="0 0 10"
+      ></a-entity>
+
+      <!-- BACK(6) (red) -->
+      <a-entity
+        id="face_6"
         geometry="primitive: plane; width: 10; height: 10"
         material="color: red; side: double"
         rotation="-90 00 00"
         position="20 0 0"
       ></a-entity>
-      
     </a-scene>
   </body>
 </html>

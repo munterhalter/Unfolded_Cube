@@ -11,6 +11,8 @@ AFRAME.registerComponent("position-tracking", {
 
     this.debug = AFRAME.utils.throttle(this.debug, 1000, this);
   },
+
+  
   debug: function (t, dt) {
     // This debugging functions is NOT executed automatically
     // It gets called from the "tick" function
