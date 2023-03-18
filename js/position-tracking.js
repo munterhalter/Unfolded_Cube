@@ -11,7 +11,15 @@ AFRAME.registerComponent("position-tracking", {
     );
     console.log(this.el); // this.el is the <a-entity> this component is attached to
 
-    this.debug = AFRAME.utils.throttle(this.debug, 1000, this);
+    // BUG!: You use currentFace in your tick function but this makes it a local variable to that function
+    // BUG!: this way, currentFace cannot be accessed from outside
+    // BUG!: also, all variables local to a function should be declared using let or const
+    // BUG!: see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let
+    // BUG!: see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/const
+    // BUG!: here we decide to make the currentFace part of the component
+    this.currentFace="UNKNOWN";
+
+    this.throttledDebug = AFRAME.utils.throttle(this.debug, 1000, this);
   },
 
   tick: function (t, dt) {
@@ -30,27 +38,27 @@ AFRAME.registerComponent("position-tracking", {
     // SUGGESTION: Here it compares the value of "true" to the logical expressions below.
     switch (true) {
       case -5 < x && x < 5 && -5 < z && z < 5:
-        current_face = "FRONT(1)";
+        this.currentFace = "FRONT(1)";
         break;
       case 5 < x && x < 15 && -5 < z && z < 5:
-        current_face = "RIGHT(2)";
+        this.currentFace = "RIGHT(2)";
         break;
       case -5 < x && x < 5 && -15 < z && z < -5:
-        current_face = "TOP(3)";
+        this.currentFace = "TOP(3)";
         break;
       case -15 < x && x < -5 && -5 < z && z < 5:
-        current_face = "LEFT(4)";
+        this.currentFace = "LEFT(4)";
         break;
       case -5 < x && x < 5 && 5 < z && z < 15:
-        current_face = "BOTTOM(5)";
+        this.currentFace = "BOTTOM(5)";
         break;
       case -5 < x && x < 5 && 15 < z && z < 25:
-        current_face = "BACK(6)";
+        this.currentFace = "BACK(6)";
         break;
     }
 
     // The following code is responsible for calling the debugging function
-    this.debug(["x = " + x, "z = " + z, "current_face = " + current_face]);
+    this.throttledDebug(["x = " + x, "z = " + z, "currentFace = " + this.currentFace]);
   },
 
   /**
