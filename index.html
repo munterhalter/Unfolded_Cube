@@ -6,74 +6,13 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-extras@fb96ab2/dist/aframe-extras.min.js"></script>
+    <script src="js/position-tracking.js"></script>
     <title>Cube Faces Tracking</title>
   </head>
 
-    <script>
-      
-      AFRAME.registerComponent("position-tracking", {
-        // A new instance of the component gets created for each <a-entity> the component is attached to
-
-        // The init function gets executed each time an instance of the component is created
-        init: function () {
-          // The given instance of the component can be accessed using the `this` variable
-          // for example: this.name refers to the string representation of the component name
-          console.log(
-            "Hello, " +
-              this.name +
-              " is being initialized on the element."
-          );
-          // this.el refers to the <a-entity> this component is attached to
-          console.log(this.el);
-
-          this.debug = AFRAME.utils.throttle(this.debug, 1000, this);
-        },
-        debug: function (t, dt) {
-          // This debugging functions is NOT executed automatically
-          // It gets called from the "tick" function
-          // console.log("This is a debugging function");
-          console.log("Current position: " + current_face);
-          // Printing x, y, z values
-          //console.log("x-position: " + this.el.object3D.position.x);
-          //console.log("z-position: " + this.el.object3D.position.z);
-        },
-        tick: function (t, dt) {
-          this.el.object3D.position.x;
-          this.el.object3D.position.y;
-          this.el.object3D.position.z;
-
-          if (this.el.object3D.position.x < 10 && this.el.object3D.position.x > -10) {
-            if (this.el.object3D.position.z < 10 && this.el.object3D.position.z > -10) {
-            current_face = "FRONT"
-            } else if (this.el.object3D.position.z < -10 && this.el.object3D.position.z > -30) {
-              current_face = "TOP"
-            } else if (this.el.object3D.position.z < 30 && this.el.object3D.position.z > 10) {
-              current_face = "BOTTOM"
-            }
-          } else if (this.el.object3D.position.x < -10 && this.el.object3D.position.x > -20) {
-            if (this.el.object3D.position.z < 10 && this.el.object3D.position.z > -10) {
-              current_face = "LEFT"
-            }
-          } else if (this.el.object3D.position.x < 30 && this.el.object3D.position.x > 10) {
-            if (this.el.object3D.position.z < 10 && this.el.object3D.position.z > -10) {
-              current_face = "RIGHT"
-            }
-          } else if (this.el.object3D.position.x < 50 && this.el.object3D.position.x > 30) {
-            if (this.el.object3D.position.z < 10 && this.el.object3D.position.z > -10) {
-              current_face = "BACK"
-            }
-          }  
-
-          // The following code is responsible for calling the debugging function
-          this.debug(t, dt);
-        }
-      });
-    </script>
-
-    <!-- 
-    Any A-Frame scene must be contained inside an `<a-scene>` tag. 
-    -->
+  <body>
     <a-scene>
+      <a-sky id="sky" color="#1A0A2A"></a-sky>
 
       <a-entity id="rig" movement-controls position="0 0 0" position-tracking>
         <a-entity
@@ -84,73 +23,71 @@
         ></a-entity>
       </a-entity>
 
-      <!-- FRONT (green)-->
+      <!-- The face disposition in the unfolding of the cube is given by 
+        *********  *********  *********  *********
+
+        *********  TOP(3)     *********  *********
+
+        LEFT(4)    FRONT(1)   RIGHT(2)   BACK(6)
+
+        *********  BOTTOM(5)  *********  *********
+        
+        *********  *********  *********  *********
+      -->
+
+      <!-- FRONT(1) (green)-->
       <a-entity
-        id="cube_front"
-        geometry="primitive: plane; width: 20; height: 20"
+        id="face_1"
+        geometry="primitive: plane; width: 10; height: 10"
         material="color: green; side: double"
-        height="100"
-        width="100"
         rotation="-90 00 00"
+        position="0 0 0"
       ></a-entity>
 
-      <!-- TOP (blue)-->
+      <!-- RIGHT(2) (orange) -->
       <a-entity
-        id="cube_top"
-        geometry="primitive: plane; width: 20; height: 20"
-        material="color: blue; side: double"
-        height="100"
-        width="100"
-        rotation="-90 00 00"
-        position="0 0 -20"
-      ></a-entity>
-
-      <!-- BOTTOM (pink)-->
-      <a-entity
-        id="cube_bottom"
-        geometry="primitive: plane; width: 20; height: 20"
-        material="color: pink; side: double"
-        height="100"
-        width="100"
-        rotation="-90 00 00"
-        position="0 0 20"
-      ></a-entity>
-
-      <!-- LEFT (yellow)-->
-      <a-entity
-        id="cube_left"
-        geometry="primitive: plane; width: 20; height: 20"
-        material="color: yellow; side: double"
-        height="100"
-        width="100"
-        rotation="-90 00 00"
-        position="-20 0 0"
-      ></a-entity>
-
-      <!-- RIGHT (orange) -->
-      <a-entity
-        id="cube_right"
-        geometry="primitive: plane; width: 20; height: 20"
+        id="face_2"
+        geometry="primitive: plane; width: 10; height: 10"
         material="color: orange; side: double"
-        height="100"
-        width="100"
+        rotation="-90 00 00"
+        position="10 0 0"
+      ></a-entity>
+
+      <!-- TOP(3) (blue)-->
+      <a-entity
+        id="face_3"
+        geometry="primitive: plane; width: 10; height: 10"
+        material="color: blue; side: double"
+        rotation="-90 00 00"
+        position="0 0 -10"
+      ></a-entity>
+
+      <!-- LEFT(4) (yellow)-->
+      <a-entity
+        id="face_4"
+        geometry="primitive: plane; width: 10; height: 10"
+        material="color: yellow; side: double"
+        rotation="-90 00 00"
+        position="-10 0 0"
+      ></a-entity>
+
+      <!-- BOTTOM(5) (pink)-->
+      <a-entity
+        id="face_5"
+        geometry="primitive: plane; width: 10; height: 10"
+        material="color: pink; side: double"
+        rotation="-90 00 00"
+        position="0 0 10"
+      ></a-entity>
+
+      <!-- BACK(6) (red) -->
+      <a-entity
+        id="face_6"
+        geometry="primitive: plane; width: 10; height: 10"
+        material="color: red; side: double"
         rotation="-90 00 00"
         position="20 0 0"
       ></a-entity>
-
-      <!-- BACK (red) -->
-      <a-entity
-        id="cube_back"
-        geometry="primitive: plane; width: 20; height: 20"
-        material="color: red; side: double"
-        height="100"
-        width="100"
-        rotation="-90 00 00"
-        position="40 0 0"
-      ></a-entity>
-
-      <!-- We add a sky (making it a more pleasant color than white) -->
-      <a-sky id="sky" color="#1A0A2A"></a-sky>
     </a-scene>
   </body>
 </html>
